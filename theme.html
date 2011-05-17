@@ -439,9 +439,7 @@
 			{/block:SubmissionsEnabled}
 			{block:IfShowFollowingInNav}			
 			<li><a href="/#following" class="rounded">{lang:Following}</a></li>
-			{/block:IfShowFollowingInNav}			
-			<li><a href="/#search" class="rounded">{lang:Search}</a></li> 
-			<li><a href="/archive" class="rounded">{lang:Archive}</a></li>
+			{/block:IfShowFollowingInNav}
 		</ul>        
 		<!--{block:IndexPage}-->   		
 		<ul id="view_options" class="faint">
@@ -470,15 +468,7 @@
 		<div class="copy">
 			<p>{Description}</p>
 		</div>
-	</div>                     
-	<div id="search" class="hide">
-		<h2>{lang:Search}:</h2>
-		<div class="copy">
-			<form action="/search" method="get" id="search_form">
-			<input type="text" name="q" id="search_field" value="{SearchQuery}"/>
-			</form>
-		</div>
-	</div> 
+	</div>
 	{block:IfShowFollowingInNav}				
 	<div id="following" class="hide">
 		<h2>{lang:Following}:</h2>
