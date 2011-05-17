@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
 {block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
@@ -29,16 +28,19 @@
         {/block:PreviousPage}
         {block:NextPage}
 		var next_page = "{NextPage}"
-        {/block:NextPage}   
+        {/block:NextPage}
+
+		
+		
 		//
 		</script>
-		<meta name="color:Page BG" content="#FFF">
-		<meta name="color:Video BG" content="#000000">
-		<meta name="color:Regular and Quote BG" content="#08bcc3">
-		<meta name="color:Chat BG" content="#f392dd">
-		<meta name="color:Link BG" content="#a10789">
-		<meta name="color:Audio BG" content="#ff4040">
-		<meta name="text:Disqus Shortname" content="" />
+		<meta name="color:Page BG" content="#FFF"/>
+		<meta name="color:Video BG" content="#000000"/>
+		<meta name="color:Regular and Quote BG" content="#08bcc3"/>
+		<meta name="color:Chat BG" content="#f392dd"/>
+		<meta name="color:Link BG" content="#a10789"/>
+		<meta name="color:Audio BG" content="#ff4040"/>
+		{block:IfDisqusShortname}<meta name="text:Disqus Shortname" content="{text:Disqus Shortname}"/>{/block:IfDisqusShortname}
 		<meta name="if:Show About In Nav" content="1"/>
 		<meta name="if:Show Following In Nav" content="1"/>
 		<style>
@@ -356,21 +358,25 @@
 			{block:Photo}
 			<div class="post_thumb" id="thumb_{PostID}">
 				<div class="image photo rounded">
-					<div class="bg rounded" style="background-image:url('{PhotoURL-250}')"></div>
+					<div class="hover_image bg rounded" style="background-image:url('{PhotoURL-250}')">
+						<div class="hover_text hide">{Caption}</div>
+					</div>
 					<div class="icon"></div>
 				</div>
 			</div>
 			{/block:Photo}
 			{block:Video}
 			<div class="post_thumb" id="thumb_{PostID}">
-				<div class="image video rounded">
+				<div class="hover_image image video rounded">
+						<div class="hover_text hide">{Caption}</div>
 					<div class="icon"></div>
 				</div>
 			</div>
             {/block:Video}
            	{block:Photoset}
 			<div class="post_thumb" id="thumb_{PostID}">
-				<div class="image photoset rounded">
+				<div class="hover_image image photoset rounded">
+						<div class="hover_text hide">{Caption}</div>
 					<div class="thumbs rounded"></div>
 					<div class="icon"></div>
 				</div>
@@ -378,35 +384,40 @@
            	{/block:Photoset}
 			{block:Regular}
 			<div class="post_thumb" id="thumb_{PostID}">
-				<div class="image regular rounded">
+				<div class="hover_image image regular rounded">
+						<div class="hover_text hide">{Caption}</div>
 					<div class="inner">{block:Title}{Title}{/block:Title}</div>	 
 				</div>
 			</div>
 			{/block:Regular} 
 			{block:Quote}
 			<div class="post_thumb" id="thumb_{PostID}">  
-				<div class="image quote rounded">
+				<div class="hover_image image quote rounded">
+						<div class="hover_text hide">{Caption}</div>
 					<div class="inner">"{Quote}"</div>						
 				</div>
 			</div>
 			{/block:Quote}
 			{block:Chat}
 			<div class="post_thumb" id="thumb_{PostID}">  
-				<div class="image chat rounded">
+				<div class="hover_image image chat rounded">
+						<div class="hover_text hide">{Caption}</div>
 					<div class="inner">{block:Title}{Title}{/block:Title}</div>						
 				</div>
 			</div>
 			{/block:Chat}
 			{block:Link}
 			<div class="post_thumb" id="thumb_{PostID}">
-				<div class="image link rounded">
+				<div class="hover_image image link rounded">
+						<div class="hover_text hide">{Caption}</div>
 					<div class="inner">{Name}</div>						
 				</div>
 			</div>
 			{/block:Link}
 			{block:Audio}
 			<div class="post_thumb" id="thumb_{PostID}">
-				<div class="image audio rounded">  
+				<div class="hover_image image audio rounded">
+						<div class="hover_text hide">{Caption}</div>
 					{block:AlbumArt}
 						<div class="bg rounded" style="background-image:url('{AlbumArtURL}')"></div>
 					{/block:AlbumArt}
@@ -444,7 +455,8 @@
 		<!--{block:IndexPage}-->   		
 		<ul id="view_options" class="faint">
 			
-		</ul> 
+		</ul>
+		{block:Pagination}
 		<ul>
 			{block:PreviousPage}
 				<li><a href="{PreviousPage}" class="rounded">&#8592; {lang:Previous page}</a></li>
@@ -453,6 +465,8 @@
 				<li><a href="{NextPage}" class="rounded">{lang:Next page} &#8594;</a></li>
              {/block:NextPage}
 		</ul>
+		{/block:DayPagination}
+	<div id="title_text"></div>
 		<!--{/block:IndexPage}-->
 		<!--{block:PermalinkPage}-->
 		<ul class="faint">
