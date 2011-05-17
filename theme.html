@@ -7,7 +7,7 @@
     <link rel="icon" href="{Favicon}"/>
     <link rel="alternate" type="application/rss+xml" title="RSS" href="{RSS}" />
 		<link rel="stylesheet" type="text/css" href="http://static.tumblr.com/xhpdxdi/sr4ljv5mk/style.css" />
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 		<script type="text/javascript" src="http://static.tumblr.com/xhpdxdi/VGGkpy5vm/swfaddress.js"></script>
 		<script type="text/javascript" src="http://static.tumblr.com/xhpdxdi/zhlkpy5w3/jquery.cookie.js"></script>
 		<script type="text/javascript" src="http://static.tumblr.com/xhpdxdi/ocUlbjmms/magic.js"></script>
@@ -34,13 +34,24 @@
 		
 		//
 		</script>
+		<script type="text/javascript">
+
+		$('.hover_image').hover(
+		  function () {
+			  alert('and welcome');
+			  $('#title_text').replaceWith($(this).find(".hover_text").html());
+		  },function () {
+			  $('#title_text').hide();
+		  }
+		);
+		</script>
 		<meta name="color:Page BG" content="#FFF"/>
 		<meta name="color:Video BG" content="#000000"/>
 		<meta name="color:Regular and Quote BG" content="#08bcc3"/>
 		<meta name="color:Chat BG" content="#f392dd"/>
 		<meta name="color:Link BG" content="#a10789"/>
 		<meta name="color:Audio BG" content="#ff4040"/>
-		{block:IfDisqusShortname}<meta name="text:Disqus Shortname" content="{text:Disqus Shortname}"/>{/block:IfDisqusShortname}
+		{block:IfDisqusShortname}<meta name="text:Disqus Shortname" content="{text:Disqus Shortname}"/>
 		<meta name="if:Show About In Nav" content="1"/>
 		<meta name="if:Show Following In Nav" content="1"/>
 		<style>
@@ -78,6 +89,7 @@
         {/block:NextPage}       
 	</div>
 	<div id="loading"></div>
+	<div id="title_text"></div>
 	<div id="debug"></div>
 	<div id="main_column">
 		<!--{block:IndexPage}-->
@@ -172,6 +184,75 @@
 		<!--{block:IndexPage}-->
 		<div id="entry"></div>
 		<!--{/block:IndexPage}-->
+		
+		<div id="pages" class="hide list">
+			 <!--{block:Posts}-->
+				<div class="gallery_hold"></div>
+				<div class="inner{block:HasTags}{block:Tags} {Tag}{/block:Tags}{/block:HasTags}">
+				{block:Regular}
+	                <div class="regular">
+	                    {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+	                    <div class="copy">{Body}</div>
+	                </div>
+	            {/block:Regular}
+				{block:Photo}
+	                <div class="photo">
+	                    {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" class="the_photo" />{LinkCloseTag}
+	                    {block:Caption}
+	                    <div class="copy">{Caption}</div>
+	                    {/block:Caption}
+	                </div>
+	            {/block:Photo}  
+	            {block:Video}
+	                <div class="video">
+	                    {Video-500}
+	                    {block:Caption}
+	                     <div class="copy">{Caption}</div>
+	                    {/block:Caption}
+	                </div>
+	            {/block:Video} 
+	  			{block:Photoset}
+	  				<div class="photoset">{Photoset-500}</div>
+					{block:Caption}
+					<div class="copy">{Caption}</div>
+					{/block:Caption}
+	  			{/block:Photoset}
+				{block:Quote}
+				<div class="quote">
+					<div class="the_quote">{Quote}</div>
+				   	{block:Source}
+						<div class="copy">&ndash; {Source}</div>
+					{/block:Source}
+				</div>
+				{/block:Quote}
+				{block:Chat}
+				<div class="chat">
+					{block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+					<div class="copy">
+						<ul class="chat">
+							{block:Lines}
+							<li class="{Alt} user_{UserNumber}">
+								{block:Label}
+								<span class="chat_label">{Label}</span>
+								{/block:Label}
+								<span class="chat_line">{Line}</span>
+							</li>
+							{/block:Lines}
+						</ul>
+					</div>
+				</div>
+				{/block:Chat}
+				{block:Link}
+				<h2><a href="{URL}" class="link" {Target}>{Name}</a></h2>
+				{block:Description}
+				<div class="copy">
+					<span class="description">{Description}</span>
+				</div>
+				{/block:Description}
+				{/block:Link}
+				</div><!-- /.inner --> 
+				<!--{/block:Posts}-->			
+		</div>
 		
 		<!--{block:PermalinkPage}-->
 		<div id="entry">
@@ -396,8 +477,7 @@
 				<li><a href="{NextPage}" class="rounded">{lang:Next page} &#8594;</a></li>
              {/block:NextPage}
 		</ul>
-		{/block:Pagination}
-	<div id="title_text"></div>
+		{/block:DayPagination}
 		<!--{/block:IndexPage}-->
 		<!--{block:PermalinkPage}-->
 		<ul class="faint">
