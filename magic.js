@@ -10,13 +10,13 @@ var current_page = 0;
 //
 function init () {
 	$(".post_thumb").click(function () {
-		var id = $(this).attr("id").replace("thumb_","")
-		window.location = "#"+id
+		var id = $(this).attr("id").replace("thumb_","");
+		window.location = "#post"+id;
 	});
 	//
 	$("#search_field").keydown(function (e) {
 		if (e_.which == 13) {
-			$("#search_field").submit()
+			$("#search_field").submit();
 		}
 	});
 	$("#loading").fadeTo(n_speed, 0);
